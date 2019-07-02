@@ -33,4 +33,4 @@ df_geocode <- df_geocode %>% filter(!is.na(address))
 dim(df_geocode)
 
 write.csv(df_geocode, file='/Users/danagoin/Documents/CalEPA/fresno_address_geocoding.csv')
-View(df_geocode)
+
