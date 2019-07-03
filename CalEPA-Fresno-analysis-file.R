@@ -104,9 +104,7 @@ dim(df_calepa)
 
 # produce descriptive statistics 
 
-hist(df_calepa$`CES 3.0 Score`)
-
-
+# first recode and reclassify variables as needed 
 table(df_calepa$maternal_age, exclude=NULL)
 
 
@@ -118,7 +116,18 @@ table(df_calepa$agecat, exclude=NULL)
 df_calepa$sb535_disadvanted <- ifelse(df_calepa$`SB 535 Disadvantaged Community`=="Yes", 1, 
                                       ifelse(df_calepa$`SB 535 Disadvantaged Community`=="No",0, NA))
 
-
+df_calepa$Traffic <- as.numeric(df_calepa$Traffic)
+df_calepa$`Traffic Pctl` <- as.numeric(df_calepa$`Traffic Pctl`)
+df_calepa$`Low Birth Weight` <- as.numeric(df_calepa$`Low Birth Weight`)
+df_calepa$`Low Birth Weight Pctl` <- as.numeric(df_calepa$`Low Birth Weight Pctl`)
+df_calepa$Education <- as.numeric(df_calepa$Education)
+df_calepa$`Education Pctl` <- as.numeric(df_calepa$`Education Pctl`)
+df_calepa$`Linguistic Isolation` <- as.numeric(df_calepa$`Linguistic Isolation`)
+df_calepa$`Linguistic Isolation Pctl` <- as.numeric(df_calepa$`Linguistic Isolation Pctl`)
+df_calepa$Unemployment <- as.numeric(df_calepa$Unemployment)
+df_calepa$`Unemployment Pctl` <- as.numeric(df_calepa$`Unemployment Pctl`)
+df_calepa$`Housing Burden` <- as.numeric(df_calepa$`Housing Burden`)
+df_calepa$`Housing Burden Pctl` <- as.numeric(df_calepa$`Housing Burden Pctl`)
 
 dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
               "drink_tap", "filter_water")
@@ -157,5 +166,157 @@ ggplot(data=df_calepa) + geom_histogram(aes(x=`CES 3.0 Percentile`), bins=20, fi
 
 ggplot(data=df_calepa) + geom_histogram(aes(x=Ozone), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
 
-# CES percentile 
+# ozone percentile 
 ggplot(data=df_calepa) + geom_histogram(aes(x=`Ozone Pctl`), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# PM2.5 
+ggplot(data=df_calepa) + geom_histogram(aes(x=PM2.5), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# PM2.5 percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`PM2.5 Pctl`), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Diesel PM
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Diesel PM`), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Diesel PM percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Diesel PM Pctl`), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Drinking water 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Drinking Water`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Drinking water percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Drinking Water Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Pesticides  
+ggplot(data=df_calepa) + geom_histogram(aes(x=Pesticides), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Pesticides percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Pesticides Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Toxic release  
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Tox. Release`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Toxic release percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Tox. Release Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Traffic   
+ggplot(data=df_calepa) + geom_histogram(aes(x=Traffic), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Traffic percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Traffic Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Cleanup sites   
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Cleanup Sites`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Cleanup sites percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Cleanup Sites Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Groundwater threats   
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Groundwater Threats`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Groundwater threats percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Groundwater Threats Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Hazardous waste   
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Haz. Waste`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Hazardous waste percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Haz. Waste Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Imp water bodies    
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Imp. Water Bodies`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Imp water bodies percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Imp. Water Bodies Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Solid waste   
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Solid Waste`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Solid waste percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Solid Waste Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Pollution burden   
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Pollution Burden`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Pollution burden percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Pollution Burden Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Pollution burden score   
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Pollution Burden Score`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Asthma
+ggplot(data=df_calepa) + geom_histogram(aes(x=Asthma), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Asthma percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Asthma Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Low birth weight
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Low Birth Weight`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Low birth weight percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Low Birth Weight Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+
+# Cardiovascular disease
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Cardiovascular Disease`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Cardiovascular disease percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Cardiovascular Disease Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Education
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Education`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Education percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Education Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Linguistic isolation
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Linguistic Isolation`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Linguistic isolation percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Linguistic Isolation Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Poverty
+ggplot(data=df_calepa) + geom_histogram(aes(x=Poverty), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Poverty percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Poverty Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Unemployment
+ggplot(data=df_calepa) + geom_histogram(aes(x=Unemployment), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Unemployment percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Unemployment Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# Housing burden
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Housing Burden`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# Housing burden percentile
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Housing Burden Pctl`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+
+
+
+
+
+
+
+
+
+
+
