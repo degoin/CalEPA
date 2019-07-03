@@ -311,8 +311,24 @@ ggplot(data=df_calepa) + geom_histogram(aes(x=`Housing Burden Pctl`), bins=20, f
 
 
 
+# maps 
 
+library(sf)
+library(rgdal)
 
+# read in tract shape files from Cenus TIGER/Line Shapefile for 2016
+ca_tract <- st_read('/Users/danagoin/Documents/CalEPA/tl_2016_06_tract/tl_2016_06_tract.shp')
+
+# create sf object
+df_c <- df_calepa %>% filter(!is.na(lon))
+dim(df_c)
+dat_sf <- st_as_sf(df_c, coords = c("lon", "lat"), crs = 4269) 
+plot(dat_sf)
+
+#Add bg level covariates
+st_crs(dat_sf) <- st_crs(ca_tract)
+dat_sf <- st_join(dat_sf, ca_tract, join = st_intersects)
+head(dat_sf)
 
 
 
