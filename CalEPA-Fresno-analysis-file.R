@@ -318,19 +318,27 @@ library(rgdal)
 
 # read in tract shape files from Cenus TIGER/Line Shapefile for 2016
 ca_tract <- st_read('/Users/danagoin/Documents/CalEPA/tl_2016_06_tract/tl_2016_06_tract.shp')
+names(ca_tract)[names(ca_tract)=="GEOID"] <- "tract"
+ca_tract$tract <- as.character(ca_tract$tract)
 
-# create sf object
-df_c <- df_calepa %>% filter(!is.na(lon))
+# merge together CalEPA data with geographic data
+# can't have missing location info 
+df_c <- df_calepa %>% filter(!is.na(lon),)
 dim(df_c)
-dat_sf <- st_as_sf(df_c, coords = c("lon", "lat"), crs = 4269) 
-plot(dat_sf)
+df_c$tract <- paste0("0",df_c$tract)
 
-#Add bg level covariates
-st_crs(dat_sf) <- st_crs(ca_tract)
-dat_sf <- st_join(dat_sf, ca_tract, join = st_intersects)
-head(dat_sf)
+# join Census tracts with CalEPA
+df_c <- left_join(df_c, ca_tract, by="tract")
+dim(df_c)
+
+# convert to sf object
+dat_sf <- st_as_sf(df_c) 
 
 
+# plot Census tract boundaries and levels of traffic for the women in our study 
+
+ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
+  geom_sf(data=dat_sf, aes(fill=Traffic)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) 
 
 
 
