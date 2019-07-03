@@ -101,6 +101,28 @@ df_calepa <- df_calepa %>% select(enrollment_id, clinic_prenatal, clinic_prenata
 
 dim(df_calepa)
                                            
-                                      
+
+# produce descriptive statistics 
+
+hist(df_calepa$`CES 3.0 Score`)
 
 
+table(df_calepa$maternal_age, exclude=NULL)
+
+
+df_calepa$agecat <- ifelse(df_calepa$maternal_age<20,1,
+                           ifelse(df_calepa$maternal_age>=20 & df_calepa$maternal_age<25,2,
+                                  ifelse(df_calepa$maternal_age>=25 & df_calepa$maternal_age<30,3,
+                                         ifelse(df_calepa$maternal_age>=30,4,NA))))
+table(df_calepa$agecat, exclude=NULL)                                      
+
+dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr")
+
+for (i in 1:length(dem_vars)) {
+  print(paste("Distribution of CES score by", dem_vars[i]))
+
+tab <- df_calepa %>%  group_by(get(dem_vars[i])) %>%  summarise(mean=mean(`CES 3.0 Score`, na.rm=T), sd = sqrt(var(`CES 3.0 Score`, na.rm=T)), 
+                                               min = min(`CES 3.0 Score`, na.rm=T), max = max(`CES 3.0 Score`, na.rm=T))
+
+print(tab)
+}
