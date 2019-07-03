@@ -52,12 +52,32 @@ df_calepa <- left_join(df, df_g)
 df_ces <- read_xlsx('/Users/danagoin/Documents/CalEPA/ces3results.xlsx')
 names(df_ces)[names(df_ces)=="Census Tract"] <- "tract"
 
-# merge onto women's data 
+# merge CalEnviroScreen data with women's data 
 
 df_calepa <- left_join(df_calepa, df_ces, by="tract")
 dim(df_calepa)
 
+# keep variables you need 
 
-test <- df_calepa %>% filter(is.na(`Total Population`))
-dim(test)
+df_calepa <- df_calepa %>% select(enrollment_id, clinic_prenatal, clinic_prenatal_sp, date_visit, date_wb_return, date_wb_sent, 
+                                  wb_return, wb_no_return_sp, date_svfu_expected, blood_m, blood_m_miss_reason, 
+                                  urine_m, urine_m_miss_reason, blood_uc, blood_uc_miss_reason, date_entry_cl, 
+                                  maternal_dob, maternal_age, maternal_edu, emp_status_m, emp_status_m_sp,
+                                  emp_status_m_ftpt, marital, partner_emp_status, hh_inc, hh_number, healthcare, 
+                                  medical, hispanic_f, hispanic_m, race_m___1, race_m___2, race_m___3, race_m___4, 
+                                  race_m___5, race_m___66, race_m___77, race_m___88, race_msp, race_f___1, race_f___2, 
+                                  race_f___3, race_f___4, race_f___5, race_f___66, race_f___77, race_f___88, 
+                                  race_fsp, water_source, drink_tap, tap_no_ws, filter_water, tap_cooking, 
+                                  tap_cooking_no, blood_m_coldate, blood_m_coltime, blood_m_rt_vol, blood_m_rt_n,
+                                  blood_m_pt_vol, blood_m_pt_n,  blood_uc_coldate, blood_uc_coltime, blood_uc_rt_n, 
+                                  blood_uc_rt_vol, blood_uc_pt_n, blood_uc_pt_vol, urine_m_coldate, urine_m_coltime, 
+                                  urine_m_vol, urine_m_lastvoidtime, date_birth_c, id_echo_m, date_birth_m_mr, 
+                                  ethnicity_m_mr, race_m_mr, race_m_sp_mr, insurance_m_mr, language_m_mr, language_m_sp_mr, 
+                                  wic_mr, pnc_start_mr, lmp_mr, lmp_miss_mr, lmp_source_mr, prepreg_wt_mr, prepreg_wt_unit_mr, 
+                                  height_m_unit, height_m_unit_mr, chart_prepreg_bmi, gravidity_mr, parity_mr, livebirths_n_mr, 
+                                  mscarriage_n_mr, stillbirths_n_mr, prematurebirths_n_mr, n_lbwt_mr, diabetes_fhx_mr, 
+                                  hypertension_fhx_mr, twins_fhx_mr, preg_hypertension_mr, preeclampsia_cp_mr, gdm_cp_mr, 
+                                  travel_cp_mr, infections_cp_mr, infections_cp_sp_mr, pncomp_mr, pncomp_sp_mr, 
+                                  )
+
 
