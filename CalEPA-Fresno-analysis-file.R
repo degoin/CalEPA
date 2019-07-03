@@ -338,7 +338,7 @@ dat_sf <- st_as_sf(df_c)
 # plot Census tract boundaries and levels of traffic for the women in our study 
 
 ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
-  geom_sf(data=dat_sf, aes(fill=Traffic)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) 
+  geom_sf(data=dat_sf, aes(fill=Poverty)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) 
 
 
 
