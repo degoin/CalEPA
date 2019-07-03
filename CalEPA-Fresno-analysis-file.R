@@ -86,16 +86,20 @@ df_calepa <- df_calepa %>% select(enrollment_id, clinic_prenatal, clinic_prenata
                                   ga_miss_mr, sex_c_mr, ethnicity_c_mr, race_c_mr, race_c_mr_sp, wt_birth_unit_mr, wt_birth_mr, 
                                   length_birth_unit_mr, length_birth_mr, length_birth_missing_mr, apgar1_mr, apgar5_mr, apgar10_mr, 
                                   nicu_adm_mr___0, nicu_adm_mr___1, nicu_adm_mr___9, nicu_adm_days_mr, discharge_dx_c_mr, discharge_dx_c_sp_mr, 
-                                  notes_mr, tract, lon, lat, `Total Population`, `California County`, ZIP, `Nearby City 
-(to help approximate location only)`, Longitude, Latitude,`CES 3.0 Score`, `CES 3.0 Percentile`, `CES 3.0 
-Percentile Range`, `SB 535 Disadvantaged Community`, Ozone, `Ozone Pctl`, PM2.5, `PM2.5 Pctl`, `Diesel PM`, `Diesel PM Pctl`, 
-`Drinking Water`, `Drinking Water Pctl`, Pesticides, `Pesticides Pctl`, `Tox. Release`, `Tox. Release Pctl`, Traffic, `Traffic Pctl`, 
-`Cleanup Sites`, `Cleanup Sites Pctl`, `Groundwater Threats`, `Groundwater Threats Pctl`, `Haz. Waste`, `Haz. Waste Pctl`, 
-`Imp. Water Bodies`, `Imp. Water Bodies Pctl`, `Solid Waste`, `Solid Waste Pctl`, `Pollution Burden`, `Pollution Burden Pctl`, 
-`Pollution Burden Score`, Asthma, `Asthma Pctl`, `Low Birth Weight`, `Low Birth Weight Pctl`, `Cardiovascular Disease`, 
-`Cardiovascular Disease Pctl`, Education, `Education Pctl`, `Linguistic Isolation`, `Linguistic Isolation Pctl`, 
-Poverty, `Poverty Pctl`, Unemployment, `Unemployment Pctl`, `Housing Burden`, `Housing Burden Pctl`, `Pop. Char.`, `Pop. Char. Pctl`, 
-`Pop. Char. Score`)
+                                  notes_mr, tract, lon, lat, `Total Population`, `California County`, ZIP, `Nearby City \r\n(to help approximate location only)`, 
+                                  Longitude, Latitude,`CES 3.0 Score`, `CES 3.0 Percentile`, `CES 3.0 \r\nPercentile Range`, `SB 535 Disadvantaged Community`, 
+                                  Ozone, `Ozone Pctl`, PM2.5, `PM2.5 Pctl`, `Diesel PM`, `Diesel PM Pctl`, `Drinking Water`, 
+                                  `Drinking Water Pctl`, Pesticides, `Pesticides Pctl`, `Tox. Release`, `Tox. Release Pctl`, 
+                                  Traffic, `Traffic Pctl`, `Cleanup Sites`, `Cleanup Sites Pctl`, `Groundwater Threats`, 
+                                  `Groundwater Threats Pctl`, `Haz. Waste`, `Haz. Waste Pctl`, `Imp. Water Bodies`, `Imp. Water Bodies Pctl`, 
+                                  `Solid Waste`, `Solid Waste Pctl`, `Pollution Burden`, `Pollution Burden Pctl`, `Pollution Burden Score`,
+                                  Asthma, `Asthma Pctl`, `Low Birth Weight`, `Low Birth Weight Pctl`, `Cardiovascular Disease`, 
+                                  `Cardiovascular Disease Pctl`, Education, `Education Pctl`, `Linguistic Isolation`, `Linguistic Isolation Pctl`, 
+                                  Poverty, `Poverty Pctl`, Unemployment, `Unemployment Pctl`, `Housing Burden`, `Housing Burden Pctl`, 
+                                  `Pop. Char.`, `Pop. Char. Pctl`, `Pop. Char. Score`)
+
+
+dim(df_calepa)
                                            
                                       
 
