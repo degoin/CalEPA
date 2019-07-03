@@ -114,15 +114,48 @@ df_calepa$agecat <- ifelse(df_calepa$maternal_age<20,1,
                            ifelse(df_calepa$maternal_age>=20 & df_calepa$maternal_age<25,2,
                                   ifelse(df_calepa$maternal_age>=25 & df_calepa$maternal_age<30,3,
                                          ifelse(df_calepa$maternal_age>=30,4,NA))))
-table(df_calepa$agecat, exclude=NULL)                                      
+table(df_calepa$agecat, exclude=NULL)       
+df_calepa$sb535_disadvanted <- ifelse(df_calepa$`SB 535 Disadvantaged Community`=="Yes", 1, 
+                                      ifelse(df_calepa$`SB 535 Disadvantaged Community`=="No",0, NA))
 
-dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr")
+
+
+dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
+              "drink_tap", "filter_water")
 
 for (i in 1:length(dem_vars)) {
   print(paste("Distribution of CES score by", dem_vars[i]))
 
-tab <- df_calepa %>%  group_by(get(dem_vars[i])) %>%  summarise(mean=mean(`CES 3.0 Score`, na.rm=T), sd = sqrt(var(`CES 3.0 Score`, na.rm=T)), 
+tab <- df_calepa %>%  group_by(get(dem_vars[i])) %>%  summarise(n = n(), mean=mean(`CES 3.0 Score`, na.rm=T), sd = sqrt(var(`CES 3.0 Score`, na.rm=T)), 
                                                min = min(`CES 3.0 Score`, na.rm=T), max = max(`CES 3.0 Score`, na.rm=T))
 
 print(tab)
 }
+
+for (i in 1:length(dem_vars)) {
+  print(paste("Proportion in disadvanted community by", dem_vars[i]))
+  
+  tab <- df_calepa %>%  group_by(get(dem_vars[i])) %>%  summarise(n = n(), mean=mean(sb535_disadvanted, na.rm=T), sd = sqrt(var(sb535_disadvanted, na.rm=T)), 
+                                                                  min = min(sb535_disadvanted, na.rm=T), max = max(sb535_disadvanted, na.rm=T))
+  
+  print(tab)
+}
+
+
+
+# make plots 
+
+# CES score 
+
+ggplot(data=df_calepa) + geom_histogram(aes(x=`CES 3.0 Score`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# CES percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`CES 3.0 Percentile`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+
+# ozone score 
+
+ggplot(data=df_calepa) + geom_histogram(aes(x=Ozone), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
+
+# CES percentile 
+ggplot(data=df_calepa) + geom_histogram(aes(x=`Ozone Pctl`), fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
