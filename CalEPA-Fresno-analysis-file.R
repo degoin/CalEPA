@@ -78,6 +78,25 @@ df_calepa <- df_calepa %>% select(enrollment_id, clinic_prenatal, clinic_prenata
                                   mscarriage_n_mr, stillbirths_n_mr, prematurebirths_n_mr, n_lbwt_mr, diabetes_fhx_mr, 
                                   hypertension_fhx_mr, twins_fhx_mr, preg_hypertension_mr, preeclampsia_cp_mr, gdm_cp_mr, 
                                   travel_cp_mr, infections_cp_mr, infections_cp_sp_mr, pncomp_mr, pncomp_sp_mr, 
-                                  )
+                                  pnv_mr, vit_mr, antibiotics_mr, iron_mr, remedies_mr, laxatives_mr, antacids_mr, othermeds_mr, 
+                                  other_meds_sp_mr, preg_sub_use_mr, preg_sub_use_desc_mr, smoke_ever_mr, smoke_stop_mr, 
+                                  smoke_stop_unit_mr, smoke_stop_unit_sp_mr, smoke_amt_mr, smoke_amt_unit_mr, smoke_amt_per_mr, 
+                                  date_admit_ld_mr, age_delivery_mr, wt_delivery_mr, wt_delivery_unit_mr, bmi_delivery_mr, 
+                                  labor_mr, delivery_method_mr, csec_plan_mr, csec_type_mr, date_birth_c_mr, ga_weeks_mr, 
+                                  ga_miss_mr, sex_c_mr, ethnicity_c_mr, race_c_mr, race_c_mr_sp, wt_birth_unit_mr, wt_birth_mr, 
+                                  length_birth_unit_mr, length_birth_mr, length_birth_missing_mr, apgar1_mr, apgar5_mr, apgar10_mr, 
+                                  nicu_adm_mr___0, nicu_adm_mr___1, nicu_adm_mr___9, nicu_adm_days_mr, discharge_dx_c_mr, discharge_dx_c_sp_mr, 
+                                  notes_mr, tract, lon, lat, `Total Population`, `California County`, ZIP, `Nearby City 
+(to help approximate location only)`, Longitude, Latitude,`CES 3.0 Score`, `CES 3.0 Percentile`, `CES 3.0 
+Percentile Range`, `SB 535 Disadvantaged Community`, Ozone, `Ozone Pctl`, PM2.5, `PM2.5 Pctl`, `Diesel PM`, `Diesel PM Pctl`, 
+`Drinking Water`, `Drinking Water Pctl`, Pesticides, `Pesticides Pctl`, `Tox. Release`, `Tox. Release Pctl`, Traffic, `Traffic Pctl`, 
+`Cleanup Sites`, `Cleanup Sites Pctl`, `Groundwater Threats`, `Groundwater Threats Pctl`, `Haz. Waste`, `Haz. Waste Pctl`, 
+`Imp. Water Bodies`, `Imp. Water Bodies Pctl`, `Solid Waste`, `Solid Waste Pctl`, `Pollution Burden`, `Pollution Burden Pctl`, 
+`Pollution Burden Score`, Asthma, `Asthma Pctl`, `Low Birth Weight`, `Low Birth Weight Pctl`, `Cardiovascular Disease`, 
+`Cardiovascular Disease Pctl`, Education, `Education Pctl`, `Linguistic Isolation`, `Linguistic Isolation Pctl`, 
+Poverty, `Poverty Pctl`, Unemployment, `Unemployment Pctl`, `Housing Burden`, `Housing Burden Pctl`, `Pop. Char.`, `Pop. Char. Pctl`, 
+`Pop. Char. Score`)
+                                           
+                                      
 
 
