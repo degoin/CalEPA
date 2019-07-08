@@ -154,6 +154,15 @@ dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "par
 # 77 - don't know 
 # 88 - refused 
 
+# current marital status 
+# 1 - married 
+# 2 - partnered 
+# 3 - widowed 
+# 4 - separated 
+# 5 - divorced
+# 6 - single 
+# 8 - refused 
+
 for (i in 1:length(dem_vars)) {
   print(paste("Distribution of CES score by", dem_vars[i]))
 
