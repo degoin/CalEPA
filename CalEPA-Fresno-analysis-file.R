@@ -384,6 +384,7 @@ ggplot(data=df_calepa) + geom_histogram(aes(x=`Housing Burden Pctl`), bins=20, f
 
 library(sf)
 library(rgdal)
+library(viridis)
 
 # read in tract shape files from Cenus TIGER/Line Shapefile for 2016
 ca_tract <- st_read('/Users/danagoin/Documents/CalEPA/tl_2016_06_tract/tl_2016_06_tract.shp')
@@ -407,7 +408,9 @@ dat_sf <- st_as_sf(df_c)
 # plot Census tract boundaries and levels of traffic for the women in our study 
 
 ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
-  geom_sf(data=dat_sf, aes(fill=`Asthma Pctl`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) 
+  geom_sf(data=dat_sf, aes(fill=`Asthma Pctl`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
+  scale_fill_viridis()
+
 
 
 
