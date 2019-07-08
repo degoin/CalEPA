@@ -129,9 +129,6 @@ df_calepa$`Unemployment Pctl` <- as.numeric(df_calepa$`Unemployment Pctl`)
 df_calepa$`Housing Burden` <- as.numeric(df_calepa$`Housing Burden`)
 df_calepa$`Housing Burden Pctl` <- as.numeric(df_calepa$`Housing Burden Pctl`)
 
-dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
-              "drink_tap", "filter_water") 
-
 
 # maternal education categories 
 # 0 - less than high school 
@@ -162,6 +159,47 @@ dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "par
 # 5 - divorced
 # 6 - single 
 # 8 - refused 
+
+# household income 
+# 1 - less than $5000
+# 2 - $5-9000
+# 3 - $10-14,999
+# 4 - $15-19,999 
+# etc 
+
+# health care - covered under health insurance
+# 0 - No
+# 1 - Yes 
+# 77 - don't know 
+# 88 - refused 
+
+# medi-cal -- has Medi-Cal for insurance
+# 0 - No 
+# 1 - Yes
+# 77 - don't know 
+# 88 - refused 
+
+# race_m 
+# 1 - black 
+# 2 - asian 
+# 3 - native american / alaska native 
+# 4 native hawaiian / pacific islander 
+# 5 - white 
+# 66 - other 
+# 77 - don't know 
+# 88 - refused 
+
+
+df_calepa$race_eth_m <- ifelse(df_calepa$hispanic_m==1, "Hispanic", 
+                               ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___1==1,"Black", 
+                                      ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___2==1,"Asian",
+                                             ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___3==1,"American Indian/Alaska Native",
+                                                    ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___4==1, "Native Hawaiian/Pacific Islander",
+                                                           ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___5==1, "White", "Other"))))))
+
+dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
+              "drink_tap", "filter_water", "race_eth_m") 
+
 
 for (i in 1:length(dem_vars)) {
   print(paste("Distribution of CES score by", dem_vars[i]))
