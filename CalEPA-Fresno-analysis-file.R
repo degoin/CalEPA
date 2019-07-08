@@ -130,7 +130,18 @@ df_calepa$`Housing Burden` <- as.numeric(df_calepa$`Housing Burden`)
 df_calepa$`Housing Burden Pctl` <- as.numeric(df_calepa$`Housing Burden Pctl`)
 
 dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
-              "drink_tap", "filter_water")
+              "drink_tap", "filter_water") 
+
+
+# maternal education categories 
+# 0 - less than high school 
+# 1 - high school diploma or GED 
+# 2 - some college or AA degree 
+# 3 - bachelor's degree
+# 4 - master's degree
+# 5 - doctoral degree
+# 7 - don't know 
+# 8 - refused 
 
 for (i in 1:length(dem_vars)) {
   print(paste("Distribution of CES score by", dem_vars[i]))
@@ -338,7 +349,7 @@ dat_sf <- st_as_sf(df_c)
 # plot Census tract boundaries and levels of traffic for the women in our study 
 
 ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
-  geom_sf(data=dat_sf, aes(fill=Poverty)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) 
+  geom_sf(data=dat_sf, aes(fill=`Asthma Pctl`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) 
 
 
 
