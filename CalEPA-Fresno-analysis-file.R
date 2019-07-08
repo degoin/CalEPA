@@ -143,6 +143,17 @@ dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "par
 # 7 - don't know 
 # 8 - refused 
 
+
+# maternal employment status 
+# 1 - working for pay 
+# 2 - looking for work 
+# 3 - retired 
+# 4 - homemaker or full time caretaker 
+# 5 - student 
+# 6 - something else 
+# 77 - don't know 
+# 88 - refused 
+
 for (i in 1:length(dem_vars)) {
   print(paste("Distribution of CES score by", dem_vars[i]))
 
