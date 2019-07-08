@@ -72,7 +72,7 @@ df_calepa <- df_calepa %>% select(enrollment_id, clinic_prenatal, clinic_prenata
                                   blood_m_pt_vol, blood_m_pt_n,  blood_uc_coldate, blood_uc_coltime, blood_uc_rt_n, 
                                   blood_uc_rt_vol, blood_uc_pt_n, blood_uc_pt_vol, urine_m_coldate, urine_m_coltime, 
                                   urine_m_vol, urine_m_lastvoidtime, date_birth_c, id_echo_m, date_birth_m_mr, 
-                                  ethnicity_m_mr, race_m_mr, race_m_sp_mr, insurance_m_mr, language_m_mr, language_m_sp_mr, 
+                                  ethnicity_m_mr, race_m_mr, race_m_sp_mr, cob_m_mr, insurance_m_mr, language_m_mr, language_m_sp_mr, 
                                   wic_mr, pnc_start_mr, lmp_mr, lmp_miss_mr, lmp_source_mr, prepreg_wt_mr, prepreg_wt_unit_mr, 
                                   height_m_unit, height_m_unit_mr, chart_prepreg_bmi, gravidity_mr, parity_mr, livebirths_n_mr, 
                                   mscarriage_n_mr, stillbirths_n_mr, prematurebirths_n_mr, n_lbwt_mr, diabetes_fhx_mr, 
