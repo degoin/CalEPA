@@ -189,6 +189,7 @@ df_calepa$`Housing Burden Pctl` <- as.numeric(df_calepa$`Housing Burden Pctl`)
 # 77 - don't know 
 # 88 - refused 
 
+df_calepa$parity <- ifelse(df_calepa$parity_mr==9, NA, df_calepa$parity_mr)
 
 df_calepa$race_eth_m <- ifelse(df_calepa$hispanic_m==1, "Hispanic", 
                                ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___1==1,"Black", 
@@ -197,7 +198,7 @@ df_calepa$race_eth_m <- ifelse(df_calepa$hispanic_m==1, "Hispanic",
                                                     ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___4==1, "Native Hawaiian/Pacific Islander",
                                                            ifelse(df_calepa$hispanic_m==0 & df_calepa$race_m___5==1, "White", "Other"))))))
 
-dem_vars <- c("agecat","maternal_edu", "emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
+dem_vars <- c("agecat","maternal_edu", "race_eth_m","emp_status_m", "marital", "hh_inc", "parity_mr", "wic_mr",
               "drink_tap", "filter_water", "race_eth_m") 
 
 
@@ -216,6 +217,13 @@ for (i in 1:length(dem_vars)) {
   tab <- df_calepa %>%  group_by(get(dem_vars[i])) %>%  summarise(n = n(), mean=mean(sb535_disadvanted, na.rm=T), sd = sqrt(var(sb535_disadvanted, na.rm=T)), 
                                                                   min = min(sb535_disadvanted, na.rm=T), max = max(sb535_disadvanted, na.rm=T))
   
+  print(tab)
+}
+
+for (i in 1:length(dem_vars)) {
+  print(paste("Tabs by", dem_vars[i]))
+  
+  tab <- df_calepa %>%  group_by(get(dem_vars[i])) %>%  summarise(N = n()) %>% mutate(proportion = N/sum(N))
   print(tab)
 }
 
@@ -408,8 +416,12 @@ dat_sf <- st_as_sf(df_c)
 # plot Census tract boundaries and levels of traffic for the women in our study 
 
 ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
-  geom_sf(data=dat_sf, aes(fill=`Asthma Pctl`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
+  geom_sf(data=dat_sf, aes(fill=`CES 3.0 Percentile`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
   scale_fill_viridis()
+
+# map for each of the 4 indicators
+# create a table of demographics and average birth weight and gestational age
+# 
 
 
 
