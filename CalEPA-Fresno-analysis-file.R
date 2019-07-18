@@ -399,19 +399,37 @@ ca_tract <- st_read('/Users/danagoin/Documents/CalEPA/tl_2016_06_tract/tl_2016_0
 names(ca_tract)[names(ca_tract)=="GEOID"] <- "tract"
 ca_tract$tract <- as.character(ca_tract$tract)
 
-# merge together CalEPA data with geographic data
+# merge together CalEPA and women's data with geographic data
 # can't have missing location info 
 df_c <- df_calepa %>% filter(!is.na(lon),)
 dim(df_c)
 df_c$tract <- paste0("0",df_c$tract)
 
-# join Census tracts with CalEPA
+# join Census tracts with women's data and CalEPA
 df_c <- left_join(df_c, ca_tract, by="tract")
 dim(df_c)
 
 # convert to sf object
 dat_sf <- st_as_sf(df_c) 
 
+# join Census tracts with CalEPA, not women's data 
+df_ces$tract <- as.character(df_ces$tract)
+df_ces$tract <- paste0("0",df_ces$tract)
+
+df_ces_c <- left_join(df_ces, ca_tract, by="tract")
+
+dat_ces <- st_as_sf(df_ces_c)
+
+
+# plot Census tract boundaries and CES score for all of CA  
+map1 <- ggplot()  +  geom_sf(data=dat_ces, aes(fill=`CES 3.0 Percentile`)) + scale_fill_viridis()
+
+map2 <- ggplot()  +  geom_sf(data=dat_ces, aes(fill=`CES 3.0 Percentile`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
+  scale_fill_viridis() + geom_point(data=dat_sf, aes(x=lon, y=lat), size =1)
+
+ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
+  geom_sf(data=dat_ces, aes(fill=`CES 3.0 Percentile`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
+  scale_fill_viridis()
 
 # plot Census tract boundaries and levels of traffic for the women in our study 
 
