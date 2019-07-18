@@ -231,6 +231,8 @@ for (i in 1:length(dem_vars)) {
 
 # make plots 
 
+
+
 # CES score 
 
 ggplot(data=df_calepa) + geom_histogram(aes(x=`CES 3.0 Score`), bins=20, fill="#045a8d", color="white") + theme_bw() + labs(y="Frequency")
@@ -422,10 +424,35 @@ dat_ces <- st_as_sf(df_ces_c)
 
 
 # plot Census tract boundaries and CES score for all of CA  
-map1 <- ggplot()  +  geom_sf(data=dat_ces, aes(fill=`CES 3.0 Percentile`)) + scale_fill_viridis()
+# pollution burden usis the average percentiles of the sever exposure indicators and the five environmental effects indicators 
+# population characteristics uses the average percentiles for the sensitive population indicators and the socioeconomic factors 
 
-map2 <- ggplot()  +  geom_sf(data=dat_ces, aes(fill=`CES 3.0 Percentile`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
-  scale_fill_viridis() + geom_point(data=dat_sf, aes(x=lon, y=lat), size =1)
+indicators <- c("CES 3.0 Score", "CES 3.0 Percentile","Pollution Burden", "Pollution Burden Score", "Pollution Burden Pctl", 
+                "Pop. Char.", "Pop. Char. Score", "Pop. Char. Pctl")
+
+labels <- c("CalEnviroScreen Score", "CalEnviroScreen \nPercentile", "Pollution Burden", "Pollution Burden \nScore", 
+            "Pollution Burden \nPercentile", "Population Characteristics", "Population Characteristics \nScore", 
+            "Population Characteristics \nPercentile")
+
+# pollution burden is the average of percentiles from the pollution burden indicators (with half weighting for environmental effects)
+# pollution burden score is the pollution burden scaled with a range of 0-10 
+
+# pop char is the average of the percentiles form the popoulation characteristics indicators 
+# pop char score is the population characteristics scaled with a range of 0-10 
+
+dat_sf$participant <- "Participants"
+
+for (i in 1:length(indicators)) {
+  
+map1 <- ggplot()  +  geom_sf(data=dat_ces, aes(fill=with(data=dat_ces, get(indicators[i])))) + 
+  coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
+  scale_fill_viridis(name=labels[i])   + 
+  labs(x="Longitude", y="Latitude")  + geom_point(data=dat_sf, aes(x=lon, y=lat, shape=participant), size =1) + 
+   scale_shape(name="") + theme(legend.position = "right", legend.text=element_text(size=11)) 
+
+ggsave(map1, file=paste0("/Users/danagoin/Documents/CalEPA/CalEPA/maps/Fresno_map_",indicators[i],".pdf"))
+}
+
 
 ggplot(data=ca_tract) + geom_sf() + theme_bw() + 
   geom_sf(data=dat_ces, aes(fill=`CES 3.0 Percentile`)) + coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
