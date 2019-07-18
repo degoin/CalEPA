@@ -447,7 +447,7 @@ for (i in 1:length(indicators)) {
 map1 <- ggplot()  +  geom_sf(data=dat_ces, aes(fill=with(data=dat_ces, get(indicators[i])))) + 
   coord_sf(xlim=c(-120.75,-118.25), ylim=c(36, 37.5), expand=T) + 
   scale_fill_viridis(name=labels[i])   + 
-  labs(x="Longitude", y="Latitude")  + geom_point(data=dat_sf, aes(x=lon, y=lat, shape=participant), size =1) + 
+  labs(x="Longitude", y="Latitude")  + geom_point(data=dat_sf, aes(x=lon, y=lat, shape=participant), size =1, colour="red") + 
    scale_shape(name="") + theme(legend.position = "right", legend.text=element_text(size=11)) 
 
 ggsave(map1, file=paste0("/Users/danagoin/Documents/CalEPA/CalEPA/maps/Fresno_map_",indicators[i],".pdf"))
